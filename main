@@ -1,0 +1,41 @@
+// galton board machine
+// jc
+// pd 7
+
+#include <iostream>
+#include <cstdlib> 
+#include <ctime>   
+
+using namespace std;
+int main() {
+    srand(time(0));  
+    int numPegs, numBalls;     
+    cout << "how many balls would you like to drop : ";
+    cin >> numBalls;
+    cout << "how many pegs (rows) would you like to have : ";
+    cin >> numPegs;
+    int bins[11] = {0};   
+    for (int i = 0; i < numBalls; ++i) {
+        int position = 0; 
+        for (int j = 0; j < numPegs; ++j) {
+            int direction = rand() % 2;  
+            if (direction == 1) {
+                position++;
+            }
+        }
+        bins[position]++;
+    }
+    cout << endl;
+    cout << "the histogram of balls drops:" << endl;
+    cout << endl;
+    for (int i = 0; i <= numPegs; ++i) {
+        cout << i << ": ";
+        for (int j = 0; j < bins[i] / 5; ++j) {
+            cout << "*";  
+        }
+        cout << " (" << bins[i] << ")" << endl;
+    }
+    cout << endl;
+    cout << "balls dropped: " << numBalls << endl;
+}
+
